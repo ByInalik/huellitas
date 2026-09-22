@@ -1,0 +1,193 @@
+---
+import { Heart, ShieldCheck, ArrowRight, Sparkles } from 'lucide-astro';
+
+// Datos de ejemplo para el slider (mínimo 3 imágenes)
+const sliderImages = [
+  {
+    url: 'https://images.unsplash.com/photo-1548767797-d8c844163c4c?q=80&w=1000&auto=format&fit=crop',
+    alt: 'Perro rescatado en el refugio',
+    tag: 'En busca de hogar'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?q=80&w=1000&auto=format&fit=crop',
+    alt: 'Gato rescatado bajo cuidado médico',
+    tag: 'Recuperado'
+  },
+  {
+    url: 'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=1000&auto=format&fit=crop',
+    alt: 'Perro feliz en jornada de adopción',
+    tag: 'Adoptado recientemente'
+  }
+];
+
+const stats = [
+  { value: '80+', label: 'Animales en el refugio' },
+  { value: '150+', label: 'Adopciones exitosas' },
+  { value: '100%', label: 'Compromiso y transparencia' }
+];
+---
+
+<section class="relative overflow-hidden py-12 md:py-20 lg:py-24">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      
+      <!-- COLUMNA IZQUIERDA: MENSAJE PRINCIPAL -->
+      <div class="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
+        
+        <!-- Badge flotante -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-terracotta/10 text-brand-terracotta dark:bg-brand-terracotta/20 dark:text-orange-300 text-xs sm:text-sm font-semibold tracking-wide border border-brand-terracotta/20">
+          <Sparkles class="w-4 h-4" />
+          <span>Refugio sin fines de lucro</span>
+        </div>
+
+        <!-- Encabezado Impactante -->
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-zinc-900 dark:text-white leading-[1.1] tracking-tight">
+          Cambiemos el destino de más de <span class="text-brand-terracotta">80 huellitas</span> rescatadas.
+        </h1>
+
+        <!-- Subtítulo -->
+        <p class="text-lg sm:text-xl text-zinc-600 dark:text-zinc-300 max-w-2xl font-normal leading-relaxed">
+          Cada día alimentamos, curamos y protegemos a decenas de perros y gatos en situación de vulnerabilidad. Tu apoyo hace la diferencia entre la calle y un hogar.
+        </p>
+
+        <!-- Botones de Acción (CTAs) -->
+        <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto pt-2">
+          <a
+            href="#apadrinar"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full font-bold text-white bg-brand-terracotta hover:bg-brand-terracotta-hover shadow-lg shadow-brand-terracotta/25 hover:scale-105 active:scale-95 transition-all text-base"
+          >
+            <Heart class="w-5 h-5 fill-current" />
+            <span>Apadrinar un Peludito</span>
+          </a>
+
+          <a
+            href="#animales"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-semibold text-zinc-700 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-800/80 hover:bg-zinc-200 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700 transition-all text-base"
+          >
+            <span>Ver Rescatados</span>
+            <ArrowRight class="w-4 h-4" />
+          </a>
+        </div>
+
+        <!-- Métricas de Impacto -->
+        <div class="grid grid-cols-3 gap-4 pt-6 w-full border-t border-zinc-200/80 dark:border-zinc-800">
+          {stats.map((stat) => (
+            <div class="flex flex-col items-center lg:items-start">
+              <span class="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-white">
+                {stat.value}
+              </span>
+              <span class="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 font-medium">
+                {stat.label}
+              </span>
+            </div>
+          ))}
+        </div>
+
+      </div>
+
+      <!-- COLUMNA DERECHA: SLIDER DE IMÁGENES -->
+      <div class="lg:col-span-5 relative w-full">
+        <div class="relative w-full aspect-[4/5] sm:aspect-square lg:aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-4 border-white dark:border-zinc-800">
+          
+          {sliderImages.map((img, index) => (
+            <div
+              class={`hero-slide absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+              data-slide-index={index}
+            >
+              <img
+                src={img.url}
+                alt={img.alt}
+                class="w-full h-full object-cover"
+                loading={index === 0 ? "eager" : "lazy"}
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+              
+              <!-- Badge inferior sobre la foto -->
+              <div class="absolute bottom-6 left-6 right-6 flex items-center justify-between text-white">
+                <div>
+                  <span class="text-xs uppercase font-bold tracking-wider px-2.5 py-1 rounded-md bg-brand-terracotta/90">
+                    {img.tag}
+                  </span>
+                  <p class="text-sm font-medium mt-1 text-zinc-200">{img.alt}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+
+          <!-- Indicadores / Puntos del Slider -->
+          <div class="absolute bottom-3 right-6 z-20 flex gap-2">
+            {sliderImages.map((_, index) => (
+              <button
+                type="button"
+                aria-label={`Ir a la imagen ${index + 1}`}
+                class={`slide-dot w-2.5 h-2.5 rounded-full transition-all ${index === 0 ? 'bg-white w-6' : 'bg-white/50'}`}
+                data-dot-index={index}
+              />
+            ))}
+          </div>
+
+        </div>
+
+        <!-- Elemento Decorativo Sutil -->
+        <div class="absolute -bottom-6 -left-6 bg-brand-sage text-white p-4 rounded-2xl shadow-xl hidden sm:flex items-center gap-3 z-30">
+          <ShieldCheck class="w-8 h-8 text-white" />
+          <div class="text-xs">
+            <p class="font-bold">100% Transparente</p>
+            <p class="opacity-90">Reportes de gastos mensuales</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Script para la rotación automática del Slider -->
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.hero-slide');
+  const dots = document.querySelectorAll('.slide-dot');
+  const totalSlides = slides.length;
+
+  function showSlide(index: number) {
+    slides.forEach((slide, i) => {
+      if (i === index) {
+        slide.classList.remove('opacity-0', 'z-0');
+        slide.classList.add('opacity-100', 'z-10');
+      } else {
+        slide.classList.remove('opacity-100', 'z-10');
+        slide.classList.add('opacity-0', 'z-0');
+      }
+    });
+
+    dots.forEach((dot, i) => {
+      if (i === index) {
+        dot.classList.remove('bg-white/50', 'w-2.5');
+        dot.classList.add('bg-white', 'w-6');
+      } else {
+        dot.classList.remove('bg-white', 'w-6');
+        dot.classList.add('bg-white/50', 'w-2.5');
+      }
+    });
+
+    currentSlide = index;
+  }
+
+  function nextSlide() {
+    const next = (currentSlide + 1) % totalSlides;
+    showSlide(next);
+  }
+
+  // Cambio automático cada 4 segundos
+  let interval = setInterval(nextSlide, 4000);
+
+  // Permitir clic en los puntos
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+      clearInterval(interval);
+      showSlide(index);
+      interval = setInterval(nextSlide, 4000);
+    });
+  });
+</script>

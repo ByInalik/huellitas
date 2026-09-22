@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Paleta cálida y empática */
+  --color-brand-terracotta: #D96B43;
+  --color-brand-terracotta-hover: #C05731;
+  --color-brand-cream: #FFFDF9;
+  --color-brand-beige: #F7F3EC;
+  --color-brand-sage: #8A9A86;
+  --color-brand-whatsapp: #25D366;
+  --color-brand-whatsapp-hover: #1EBE57;
+
+  /* Tonos oscuros cálidos */
+  --color-dark-bg: #181513;
+  --color-dark-card: #24201D;
+  --color-dark-border: #36302B;
+
+  /* Fuentes */
+  --font-sans: 'Nunito', 'Poppins', sans-serif;
+}

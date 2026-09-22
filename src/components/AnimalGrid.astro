@@ -1,0 +1,90 @@
+---
+import { Heart, BookOpen, ArrowRight } from 'lucide-astro';
+import { animals } from '../data/animals';
+
+// Tomamos únicamente los primeros 8 animales para el grid principal
+const featuredAnimals = animals.slice(0, 8);
+---
+
+<section id="animales" class="py-16 bg-brand-beige/50 dark:bg-dark-card/40 transition-colors">
+  <div class="max-w-7xl mx-auto px-4">
+    
+    <!-- Encabezado de la Sección -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-widest text-brand-terracotta">
+          Conoce a los peluditos
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-zinc-900 dark:text-white mt-1">
+          Huellitas que buscan un padrino
+        </h2>
+      </div>
+      <p class="text-zinc-600 dark:text-zinc-300 max-w-md text-sm sm:text-base">
+        Tu apadrinamiento mensual cubre alimentación y estancia en el refugio para nuestros animales rescatados.
+      </p>
+    </div>
+
+    <!-- Grid de 8 Animales (2 filas de 4 columnas) -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {featuredAnimals.map((animal) => (
+        <div class="bg-white dark:bg-zinc-900/90 border border-zinc-200/80 dark:border-zinc-800 rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all flex flex-col justify-between">
+          <div>
+            <div class="relative h-56 overflow-hidden">
+              <img
+                src={animal.image}
+                alt={animal.name}
+                class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              />
+              <span class="absolute bottom-3 right-3 bg-zinc-900/80 backdrop-blur-md text-white text-xs px-2.5 py-1 rounded-md font-medium">
+                {animal.age}
+              </span>
+            </div>
+
+            <div class="p-5">
+              <div class="flex items-center justify-between mb-2">
+                <h3 class="text-xl font-bold text-zinc-900 dark:text-white">
+                  {animal.name}
+                </h3>
+                <span class="text-xs text-zinc-500 dark:text-zinc-400">
+                  {animal.gender}
+                </span>
+              </div>
+              <p class="text-xs text-zinc-600 dark:text-zinc-400 line-clamp-3 leading-relaxed">
+                {animal.description}
+              </p>
+            </div>
+          </div>
+
+          <div class="p-5 pt-0 grid grid-cols-2 gap-2 mt-4">
+            <a
+              href={`/animales/${animal.id}`}
+              class="w-full py-2 px-3 rounded-xl border border-zinc-300 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 text-xs font-semibold flex items-center justify-center gap-1.5 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+            >
+              <BookOpen class="w-3.5 h-3.5" />
+              Ver Historia
+            </a>
+            <a
+              href="#apadrinar"
+              class="w-full py-2 px-3 rounded-xl bg-brand-terracotta hover:bg-orange-600 text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors shadow-sm"
+            >
+              <Heart class="w-3.5 h-3.5 fill-current" />
+              Apadrinar
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Botón "Ver más" -->
+    <div class="mt-12 text-center">
+      <a
+        href="/animales"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-sm font-bold hover:bg-zinc-800 dark:hover:bg-white/90 transition-all shadow-md hover:scale-[1.02]"
+      >
+        <span>Ver todos los rescatados</span>
+        <ArrowRight class="w-4 h-4" />
+      </a>
+    </div>
+
+  </div>
+</section>

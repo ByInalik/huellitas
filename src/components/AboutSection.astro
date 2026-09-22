@@ -1,0 +1,89 @@
+---
+import { ShieldCheck, HeartHandshake, Users, Award } from 'lucide-astro';
+
+const features = [
+  {
+    icon: ShieldCheck,
+    title: 'Transparencia Total',
+    description: 'Publicamos reportes de gastos y facturas veterinarias para que veas el destino de cada aporte.'
+  },
+  {
+    icon: HeartHandshake,
+    title: 'Amor y Cuidados',
+    description: 'Cada rescatado recibe atención médica, vacunación, esterilización y socialización continua.'
+  },
+  {
+    icon: Users,
+    title: 'Comunidad de Padrinos',
+    description: 'Recibirás fotos y videos periódicos del avance de salud y vida diaria de tu ahijado.'
+  }
+];
+---
+
+<section id="nosotros" class="py-20 bg-brand-cream/60 dark:bg-dark-bg transition-colors">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid lg:grid-cols-2 gap-12 items-center">
+      
+      <!-- LADO IZQUIERDO: IMAGEN COMPUESTA -->
+      <div class="relative">
+        <div class="aspect-[4/3] rounded-3xl overflow-hidden shadow-xl border-4 border-white dark:border-zinc-800">
+          <img
+            src="https://images.unsplash.com/photo-1601758228041-f3b2795255f1?q=80&w=1000&auto=format&fit=crop"
+            alt="Voluntaria cuidando a un perro rescatado"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+        </div>
+        
+        <!-- Tarjeta Flotante -->
+        <div class="absolute -bottom-6 -right-2 sm:right-6 bg-white dark:bg-zinc-800 p-5 rounded-2xl shadow-2xl border border-zinc-200/80 dark:border-zinc-700 max-w-xs flex items-center gap-4">
+          <div class="p-3 bg-brand-terracotta/10 text-brand-terracotta rounded-xl">
+            <Award class="w-8 h-8" />
+          </div>
+          <div>
+            <p class="text-2xl font-black text-zinc-900 dark:text-white">+80</p>
+            <p class="text-xs text-zinc-500 dark:text-zinc-400 font-medium">Vidas bajo nuestra protección</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- LADO DERECHO: TEXTO Y CARACTERÍSTICAS -->
+      <div class="space-y-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-brand-terracotta">
+            Sobre la Fundación
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-zinc-900 dark:text-white mt-1">
+            Dedicados al bienestar y rescate de quienes no tienen voz
+          </h2>
+        </div>
+
+        <p class="text-zinc-600 dark:text-zinc-300 leading-relaxed text-sm sm:text-base">
+          Somos una fundación sin fines de lucro dedicada al rescate, rehabilitación y reubicación de perros y gatos en situación de abandono o maltrato. Trabajamos gracias al apoyo de una red solidaria de padrinos y voluntarios.
+        </p>
+
+        <div class="space-y-4 pt-2">
+          {features.map((item) => {
+            const Icon = item.icon;
+            return (
+              <div class="flex gap-4 items-start">
+                <div class="p-2.5 bg-brand-terracotta/10 text-brand-terracotta rounded-xl shrink-0 mt-1">
+                  <Icon class="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 class="font-bold text-zinc-900 dark:text-white text-base">
+                    {item.title}
+                  </h3>
+                  <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mt-0.5">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

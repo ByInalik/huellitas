@@ -1,0 +1,128 @@
+---
+import { QrCode, Building2, Copy, Check, Heart, MessageCircle } from 'lucide-astro';
+
+const paymentMethods = [
+  {
+    id: 'nequi',
+    name: 'Nequi',
+    color: 'bg-purple-900/10 border-purple-500/30 text-purple-400',
+    account: '300 123 4567',
+    qrImage: 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=Nequi-3001234567',
+  },
+  {
+    id: 'bancolombia',
+    name: 'Bancolombia',
+    color: 'bg-amber-900/10 border-amber-500/30 text-amber-400',
+    account: 'Ahorros: 123-456789-01',
+    qrImage: 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=Bancolombia-12345678901',
+  },
+  {
+    id: 'daviplata',
+    name: 'Daviplata',
+    color: 'bg-red-900/10 border-red-500/30 text-red-400',
+    account: '300 123 4567',
+    qrImage: 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=Daviplata-3001234567',
+  }
+];
+---
+
+<section id="apadrinar" class="py-20 bg-zinc-900 text-white relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 relative z-10">
+    
+    <!-- Encabezado -->
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-terracotta/20 text-brand-terracotta text-xs font-bold uppercase tracking-wider mb-3">
+        <Heart class="w-3.5 h-3.5 fill-current" />
+        Haz la diferencia
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">
+        Apadrina o Realiza una Donación
+      </h2>
+      <p class="text-zinc-400 text-sm sm:text-base mt-3 leading-relaxed">
+        Cada aporte asegura alimento, refugio y atención veterinaria para nuestros más de 80 animales rescatados.
+      </p>
+    </div>
+
+    <!-- Contenedor Principal: QRs y Cuentas -->
+    <div class="grid lg:grid-cols-3 gap-8 items-start">
+      
+      {paymentMethods.map((method) => (
+        <div class="bg-zinc-800/80 border border-zinc-700/60 rounded-2xl p-6 flex flex-col items-center text-center shadow-lg hover:border-brand-terracotta/50 transition-all duration-300">
+          <div class={`px-3 py-1 rounded-full text-xs font-bold border mb-4 ${method.color}`}>
+            {method.name}
+          </div>
+
+          <!-- Imagen del QR -->
+          <div class="bg-white p-3 rounded-xl shadow-inner mb-4">
+            <img
+              src={method.qrImage}
+              alt={`Código QR ${method.name}`}
+              class="w-40 h-40 object-contain"
+              loading="lazy"
+            />
+          </div>
+
+          <!-- Número de cuenta / teléfono -->
+          <p class="text-xs text-zinc-400 mb-1">Número de cuenta / celular:</p>
+          <div class="flex items-center gap-2 bg-zinc-900/80 px-4 py-2 rounded-lg border border-zinc-700 w-full justify-between">
+            <span class="text-sm font-mono font-bold text-zinc-200 select-all">
+              {method.account}
+            </span>
+            <button
+              class="copy-btn text-zinc-400 hover:text-white transition-colors"
+              data-text={method.account}
+              title="Copiar número"
+            >
+              <Copy class="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      ))}
+
+    </div>
+
+    <!-- Nota para envío de comprobantes -->
+    <div class="mt-12 bg-gradient-to-r from-brand-terracotta/20 to-orange-950/30 border border-brand-terracotta/30 rounded-2xl p-6 max-w-3xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-4 text-center sm:text-left">
+        <div class="p-3 bg-brand-terracotta rounded-xl text-white shrink-0 hidden sm:block">
+          <MessageCircle class="w-6 h-6" />
+        </div>
+        <div>
+          <h3 class="text-lg font-bold text-white">¿Realizaste tu aporte?</h3>
+          <p class="text-xs text-zinc-300 mt-1">
+            Envíanos el comprobante por WhatsApp para registrar tu apadrinamiento y enviarte actualizaciones de tu ahijado.
+          </p>
+        </div>
+      </div>
+
+      <a
+        href="https://wa.me/573001234567?text=Hola,%20acabo%20de%20realizar%20un%20aporte%20para%20la%20fundación"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="shrink-0 inline-flex items-center gap-2 px-5 py-3 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 transition-colors shadow-md"
+      >
+        <MessageCircle class="w-4 h-4" />
+        <span>Enviar Comprobante</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Script para copiar al portapapeles -->
+<script>
+  const copyButtons = document.querySelectorAll('.copy-btn');
+
+  copyButtons.forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const textToCopy = btn.getAttribute('data-text');
+      if (textToCopy) {
+        await navigator.clipboard.writeText(textToCopy);
+        btn.classList.add('text-emerald-400');
+        setTimeout(() => {
+          btn.classList.remove('text-emerald-400');
+        }, 2000);
+      }
+    });
+  });
+</script>

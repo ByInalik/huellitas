@@ -1,0 +1,93 @@
+---
+import Dog from 'lucide-astro/Dog';
+import Mail from 'lucide-astro/Mail';
+import Phone from 'lucide-astro/Phone';
+import Instagram from 'lucide-astro/Instagram';
+import Facebook from 'lucide-astro/Facebook';
+import Heart from 'lucide-astro/Heart';
+import PawPrint from 'lucide-astro/PawPrint';
+---
+
+<footer class="bg-zinc-950 text-zinc-300 pt-16 pb-8 border-t border-zinc-800/60 overflow-hidden relative">
+  <div class="max-w-7xl mx-auto px-4 relative z-10">
+    
+    <!-- Sección Superior del Footer -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-zinc-800/60">
+      
+      <!-- Columna 1: Brand / Info -->
+      <div class="space-y-4">
+        <div class="flex items-center gap-2.5">
+          <div class="w-10 h-10 rounded-xl bg-brand-terracotta flex items-center justify-center text-white shadow-md">
+            <PawPrint class="w-6 h-6" />
+          </div>
+          <span class="text-xl font-extrabold text-white tracking-tight">Huellitas</span>
+        </div>
+        <p class="text-xs text-zinc-400 leading-relaxed max-w-xs">
+          Transformando el abandono en segundas oportunidades. Fundación de protección y rescate animal.
+        </p>
+      </div>
+
+      <!-- Columna 2: Navegación -->
+      <div>
+        <h4 class="text-xs font-bold text-white uppercase tracking-widest mb-4">Navegación</h4>
+        <ul class="space-y-2.5 text-xs">
+          <li><a href="/#animales" class="hover:text-brand-terracotta transition-colors">Nuestros Rescatados</a></li>
+          <li><a href="/#apadrinar" class="hover:text-brand-terracotta transition-colors">Cómo Apadrinar</a></li>
+          <li><a href="/#nosotros" class="hover:text-brand-terracotta transition-colors">Sobre Nosotros</a></li>
+          <li><a href="/#transparencia" class="hover:text-brand-terracotta transition-colors">Transparencia</a></li>
+        </ul>
+      </div>
+
+      <!-- Columna 3: Contacto -->
+      <div>
+        <h4 class="text-xs font-bold text-white uppercase tracking-widest mb-4">Contacto</h4>
+        <ul class="space-y-3 text-xs">
+          <li class="flex items-center gap-2 text-zinc-400">
+            <Mail class="w-4 h-4 text-brand-terracotta shrink-0" />
+            <a href="mailto:contacto@fundacionhuellitas.org" class="hover:text-white transition-colors">contacto@fundacionhuellitas.org</a>
+          </li>
+          <li class="flex items-center gap-2 text-zinc-400">
+            <Phone class="w-4 h-4 text-brand-terracotta shrink-0" />
+            <a href="tel:+573001234567" class="hover:text-white transition-colors">+57 300 123 4567</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Columna 4: Redes Sociales -->
+      <div>
+        <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Síguenos</h4>
+        <p class="text-xs text-zinc-400 mb-3">Conoce nuestro día a día y nuevos rescates en redes sociales.</p>
+        <div class="flex items-center gap-3">
+          <a href="#" aria-label="Instagram" class="p-2.5 rounded-xl bg-zinc-900 hover:bg-brand-terracotta text-zinc-300 hover:text-white transition-colors">
+            <Instagram class="w-4 h-4" />
+          </a>
+          <a href="#" aria-label="Facebook" class="p-2.5 rounded-xl bg-zinc-900 hover:bg-brand-terracotta text-zinc-300 hover:text-white transition-colors">
+            <Facebook class="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Marca de Agua / Tipografía Gigante "HUELLITAS." -->
+<div class="pt-8 pb-4 text-center select-none">
+  <h2 class="text-[13vw] sm:text-[14vw] font-black tracking-tighter text-zinc-700/80 leading-none uppercase inline-flex items-center justify-center gap-2">
+    <span>HUELLITAS</span>
+    <span class="inline-flex items-center justify-center text-brand-terracotta translate-y-[-0.05em]">
+      <Dog class="w-[0.75em] h-[0.75em] stroke-[2.5]" />
+    </span>
+  </h2>
+</div>
+
+    <!-- Sub-footer / Derechos -->
+    <div class="pt-4 border-t border-zinc-900 flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-500 gap-4">
+      <p>© 2026 Fundación Huellitas. Todos los derechos reservados.</p>
+      <p class="inline-flex items-center gap-1">
+        <span>Desarrollado con</span>
+        <Heart class="w-3.5 h-3.5 text-brand-terracotta fill-current" />
+        <span>para salvar vidas.</span>
+      </p>
+    </div>
+
+  </div>
+</footer>

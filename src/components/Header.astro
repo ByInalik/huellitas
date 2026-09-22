@@ -1,0 +1,113 @@
+---
+import { PawPrint, Heart, Menu, X, HeartHandshake } from 'lucide-astro';
+import ThemeToggle from './ThemeToggle.astro';
+
+const navLinks = [
+  { name: 'Nuestros Animales', href: '#animales' },
+  { name: 'Apadrinar', href: '#apadrinar' },
+  { name: 'Nosotros', href: '#nosotros' },
+  { name: 'Patrocinadores', href: '#sponsors' },
+];
+---
+
+<header class="sticky top-0 z-50 w-full px-4 py-3 backdrop-blur-md bg-brand-cream/80 dark:bg-dark-bg/80 border-b border-zinc-200/80 dark:border-dark-border transition-colors duration-300">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    
+    <!-- BRAND / LOGO -->
+    <a href="#" class="flex items-center gap-2.5 font-bold text-xl tracking-tight text-zinc-900 dark:text-white hover:opacity-90 transition-opacity">
+      <div class="p-2 bg-brand-terracotta text-white rounded-xl shadow-sm">
+        <PawPrint class="w-5 h-5" />
+      </div>
+      <span>Huellitas</span>
+    </a>
+
+    <!-- NAV ENLACES DESKTOP (Inspirado en la imagen) -->
+    <nav class="hidden md:flex items-center gap-1 bg-zinc-100/70 dark:bg-zinc-900/60 p-1.5 rounded-full border border-zinc-200/60 dark:border-zinc-800">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="px-4 py-1.5 text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white hover:bg-white dark:hover:bg-zinc-800 rounded-full transition-all duration-200"
+        >
+          {link.name}
+        </a>
+      ))}
+    </nav>
+
+    <!-- ACCIONES DERECHA -->
+    <div class="hidden md:flex items-center gap-3">
+      <!-- Botón Modo Oscuro -->
+      <ThemeToggle />
+
+      <a
+        href="#voluntariado"
+        class="text-sm font-medium text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white px-3 py-2 flex items-center gap-1.5 transition-colors"
+      >
+        <HeartHandshake class="w-4 h-4 text-brand-sage" />
+        <span>Voluntariado</span>
+      </a>
+
+      <!-- Botón CTA Donar Destacado -->
+      <a
+        href="#donar"
+        class="inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold text-white bg-brand-terracotta hover:bg-brand-terracotta-hover transition-all shadow-md shadow-brand-terracotta/20 hover:scale-105 active:scale-95"
+      >
+        <Heart class="w-4 h-4 fill-current" />
+        <span>Donar</span>
+      </a>
+    </div>
+
+    <!-- BOTÓN MENÚ MÓVIL -->
+    <div class="flex items-center gap-2 md:hidden">
+      <ThemeToggle />
+      <button
+        id="mobile-menu-button"
+        type="button"
+        aria-label="Abrir menú"
+        class="p-2 rounded-lg text-zinc-600 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 focus:outline-none"
+      >
+        <Menu id="menu-icon" class="w-6 h-6 block" />
+        <X id="close-icon" class="w-6 h-6 hidden" />
+      </button>
+    </div>
+  </div>
+
+  <!-- MENÚ MÓVIL DESPLEGABLE -->
+  <div id="mobile-menu" class="hidden md:hidden pt-4 pb-3 border-t border-zinc-200 dark:border-zinc-800 mt-3 flex-col gap-2">
+    {navLinks.map((link) => (
+      <a
+        href={link.href}
+        class="px-3 py-2 text-base font-medium text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors"
+      >
+        {link.name}
+      </a>
+    ))}
+    <a
+      href="#voluntariado"
+      class="px-3 py-2 text-base font-medium text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg transition-colors flex items-center gap-2"
+    >
+      <HeartHandshake class="w-4 h-4 text-brand-sage" />
+      <span>Voluntariado</span>
+    </a>
+    <a
+      href="#donar"
+      class="mt-2 w-full text-center py-2.5 rounded-full font-semibold text-white bg-brand-terracotta hover:bg-brand-terracotta-hover flex items-center justify-center gap-2 shadow-sm"
+    >
+      <Heart class="w-4 h-4 fill-current" />
+      <span>Donar Ahora</span>
+    </a>
+  </div>
+</header>
+
+<script>
+  const button = document.getElementById('mobile-menu-button');
+  const menu = document.getElementById('mobile-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  button?.addEventListener('click', () => {
+    menu?.classList.toggle('hidden');
+    menu?.classList.toggle('flex');
+    menuIcon?.classList.toggle('hidden');
+    closeIcon?.classList.toggle('hidden');
+  });
+</script>
