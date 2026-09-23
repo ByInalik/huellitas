@@ -1,0 +1,101 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { ShieldCheck, Download, FileText, TrendingUp, AlertCircle, Calendar } from 'lucide-astro';
+
+const reports = [
+  {
+    month: "Agosto 2026",
+    income: "$3.450.000 COP",
+    expenses: "$3.210.000 COP",
+    description: "Compra de 18 bultos de comida, jornadas de vacunación y pago de facturas veterinarias.",
+    pdfUrl: "#"
+  },
+  {
+    month: "Julio 2026",
+    income: "$2.980.000 COP",
+    expenses: "$2.950.000 COP",
+    description: "Mantenimiento de techos en el área de perros y medicamentos para tratamientos dermatológicos.",
+    pdfUrl: "#"
+  },
+  {
+    month: "Junio 2026",
+    income: "$3.100.000 COP",
+    expenses: "$3.050.000 COP",
+    description: "Alimentación general y esterilización de 12 felinos rescatados.",
+    pdfUrl: "#"
+  }
+];
+---
+
+<Layout title="Transparencia Financiera - Fundación Huellitas">
+  <Header />
+  <main class="py-12 bg-zinc-50 dark:bg-zinc-950 transition-colors">
+    <div class="max-w-5xl mx-auto px-4">
+      
+      <!-- Encabezado -->
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-bold uppercase tracking-wider">
+          <ShieldCheck class="w-4 h-4" />
+          Rendición de Cuentas
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-zinc-900 dark:text-white mt-3">
+          Transparencia y Gestión
+        </h1>
+        <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mt-2">
+          Publicamos de manera periódica el destino de cada donación recibida para la tranquilidad de nuestros padrinos y patrocinadores.
+        </p>
+      </div>
+
+      <!-- Nota aclaratoria del flujo administrativo -->
+      <div class="p-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-900 dark:text-amber-200 mb-10 flex items-start gap-3">
+        <AlertCircle class="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
+        <p class="text-xs sm:text-sm leading-relaxed">
+          <strong>Nota de gestión:</strong> Las fundadoras del refugio cuentan con un gestor administrativo de confianza encargado del registro contable y la digitalización de comprobantes/facturas para mantener información clara y verificada.
+        </p>
+      </div>
+
+      <!-- Reportes Mensuales -->
+      <div class="space-y-4">
+        {reports.map((report) => (
+          <div class="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div class="space-y-2 max-w-xl">
+              <div class="flex items-center gap-2">
+                <span class="inline-flex items-center gap-1 text-xs font-bold text-brand-terracotta">
+                  <Calendar class="w-3.5 h-3.5" />
+                  {report.month}
+                </span>
+              </div>
+              <h3 class="text-lg font-bold text-zinc-900 dark:text-white">
+                Informe Financiero del Mes
+              </h3>
+              <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                {report.description}
+              </p>
+              
+              <div class="flex gap-4 pt-1 text-xs font-semibold">
+                <span class="text-emerald-600 dark:text-emerald-400">
+                  Ingresos: {report.income}
+                </span>
+                <span class="text-zinc-500 dark:text-zinc-400">
+                  Egresos: {report.expenses}
+                </span>
+              </div>
+            </div>
+
+            <a
+              href={report.pdfUrl}
+              class="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-zinc-100 dark:bg-zinc-800 hover:bg-zinc-200 dark:hover:bg-zinc-700 text-zinc-900 dark:text-white text-xs font-bold transition-all shrink-0"
+            >
+              <Download class="w-4 h-4" />
+              <span>Soportes (PDF)</span>
+            </a>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </main>
+  <Footer />
+</Layout>

@@ -1,0 +1,151 @@
+---
+import { Heart, ShieldCheck, Home, Utensils } from 'lucide-astro';
+
+const slides = [
+  {
+    title: "Alimentación Nutritiva",
+    description: "Asegura el alimento diario y concentrado especializado para más de 80 peluditos en recuperación.",
+    image: "https://images.unsplash.com/photo-1589941013453-ec89f33b5e95?q=80&w=1200&auto=format&fit=crop",
+    icon: Utensils,
+    tag: "Nutrición"
+  },
+  {
+    title: "Atención Veterinaria y Salud",
+    description: "Cubre vacunas, desparasitación, esterilización y tratamientos médicos para los rescatados.",
+    image: "https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?q=80&w=1200&auto=format&fit=crop",
+    icon: ShieldCheck,
+    tag: "Salud"
+  },
+  {
+    title: "Refugio y Camitas Dignas",
+    description: "Financia camas, cobijas y la reparación de espacios seguros para que duerman protegidos.",
+    image: "https://images.unsplash.com/photo-1541599540903-216a46ca1dc0?q=80&w=1200&auto=format&fit=crop",
+    icon: Home,
+    tag: "Confort"
+  }
+];
+---
+
+<section id="donar" class="py-16 bg-zinc-900 text-white relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4">
+    
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <span class="text-xs font-bold uppercase tracking-widest text-brand-terracotta">
+        Tu ayuda transforma vidas
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold mt-1">
+        ¿En qué se invierte tu donación?
+      </h2>
+      <p class="text-xs sm:text-sm text-zinc-400 mt-2">
+        Cada aporte va directamente a cubrir las necesidades básicas e insumos de nuestros rescatados.
+      </p>
+    </div>
+
+    <!-- Container del Slider -->
+    <div class="relative rounded-3xl overflow-hidden bg-zinc-950 border border-zinc-800 shadow-2xl">
+      <div id="donation-slider" class="relative h-[420px] sm:h-[480px]">
+        {slides.map((slide, index) => {
+          const Icon = slide.icon;
+          return (
+            <div
+              class={`slide-item absolute inset-0 transition-opacity duration-700 ease-in-out flex flex-col justify-end p-6 sm:p-12 ${index === 0 ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+              data-index={index}
+            >
+              <!-- Imagen de fondo con Overlay -->
+              <img
+                src={slide.image}
+                alt={slide.title}
+                class="absolute inset-0 w-full h-full object-cover opacity-40"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-transparent"></div>
+
+              <!-- Contenido sobre la imagen -->
+              <div class="relative z-10 max-w-xl space-y-3">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-terracotta/20 border border-brand-terracotta/40 text-brand-terracotta text-xs font-bold uppercase tracking-wider">
+                  <Icon class="w-3.5 h-3.5" />
+                  {slide.tag}
+                </span>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-white leading-tight">
+                  {slide.title}
+                </h3>
+                <p class="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                  {slide.description}
+                </p>
+                <div class="pt-2">
+                  <a
+                    href="#apadrinar"
+                    class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-terracotta hover:bg-orange-600 text-white text-xs font-bold transition-all shadow-md"
+                  >
+                    <Heart class="w-4 h-4 fill-current" />
+                    <span>Hacer una donación</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <!-- Indicadores de Navegación -->
+      <div class="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-20 flex gap-2">
+        {slides.map((_, i) => (
+          <button
+            class={`slider-dot w-3 h-3 rounded-full transition-all ${i === 0 ? 'bg-brand-terracotta w-8' : 'bg-white/40'}`}
+            data-slide-to={i}
+            aria-label={`Ir al slide ${i + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const slides = document.querySelectorAll('.slide-item');
+  const dots = document.querySelectorAll('.slider-dot');
+  let currentIndex = 0;
+  const totalSlides = slides.length;
+  const intervalTime = 4000; // Cambio cada 4 segundos
+
+  function goToSlide(index: number) {
+    slides.forEach((slide, i) => {
+      if (i === index) {
+        slide.classList.remove('opacity-0', 'z-0');
+        slide.classList.add('opacity-100', 'z-10');
+      } else {
+        slide.classList.remove('opacity-100', 'z-10');
+        slide.classList.add('opacity-0', 'z-0');
+      }
+    });
+
+    dots.forEach((dot, i) => {
+      if (i === index) {
+        dot.classList.add('bg-brand-terracotta', 'w-8');
+        dot.classList.remove('bg-white/40');
+      } else {
+        dot.classList.remove('bg-brand-terracotta', 'w-8');
+        dot.classList.add('bg-white/40');
+      }
+    });
+
+    currentIndex = index;
+  }
+
+  function nextSlide() {
+    const next = (currentIndex + 1) % totalSlides;
+    goToSlide(next);
+  }
+
+  let timer = setInterval(nextSlide, intervalTime);
+
+  dots.forEach((dot) => {
+    dot.addEventListener('click', (e) => {
+      const target = e.currentTarget as HTMLElement;
+      const index = parseInt(target.getAttribute('data-slide-to') || '0');
+      clearInterval(timer);
+      goToSlide(index);
+      timer = setInterval(nextSlide, intervalTime);
+    });
+  });
+</script>

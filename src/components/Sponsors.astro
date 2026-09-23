@@ -1,0 +1,87 @@
+---
+import { Handshake, MessageSquare, Building2 } from 'lucide-astro';
+
+const sponsors = [
+  {
+    name: "Petco / Aliado",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+    hoverGlow: "group-hover:drop-shadow-[0_0_15px_rgba(66,133,244,0.5)]"
+  },
+  {
+    name: "Agropecuaria del Huila",
+    // Versión blanca/transparente de Amazon para resaltar en oscuro
+    logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
+    isDarkInvert: true, // Para ajustar invert en dark mode
+    hoverGlow: "group-hover:drop-shadow-[0_0_15px_rgba(255,153,0,0.6)]"
+  },
+  {
+    name: "Clínica Vet San José",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
+    hoverGlow: "group-hover:drop-shadow-[0_0_15px_rgba(229,9,20,0.5)]"
+  },
+  {
+    name: "Nutrición Animal",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg",
+    hoverGlow: "group-hover:drop-shadow-[0_0_15px_rgba(0,102,204,0.5)]"
+  }
+];
+---
+
+<section class="py-16 bg-white dark:bg-zinc-950 transition-colors border-t border-zinc-200/60 dark:border-zinc-800/80">
+  <div class="max-w-6xl mx-auto px-4">
+    
+    <!-- Subtítulo de la sección -->
+    <div class="text-center mb-10">
+      <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-zinc-400 dark:text-zinc-500">
+        <Handshake class="w-4 h-4 text-brand-terracotta" />
+        Nuestros patrocinadores y aliados estratégicos
+      </span>
+    </div>
+
+    <!-- Fila de Logos con soporte perfecto Dark / Light -->
+    <div class="flex flex-wrap items-center justify-center gap-10 md:gap-16 mb-14">
+      {sponsors.map((sponsor) => (
+        <div class="group relative flex flex-col items-center">
+          <img
+            src={sponsor.logo}
+            alt={sponsor.name}
+            class={`h-8 sm:h-9 w-auto object-contain transition-all duration-300
+              grayscale opacity-60 dark:opacity-50 
+              group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105
+              ${sponsor.isDarkInvert ? 'dark:invert dark:brightness-200' : 'dark:brightness-125'}
+              ${sponsor.hoverGlow}`}
+          />
+          
+          <!-- Tooltip sutil al pasar el puntero -->
+          <span class="absolute -bottom-8 opacity-0 group-hover:opacity-100 transition-all duration-200 text-[11px] font-bold text-zinc-700 dark:text-zinc-200 bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 rounded-md shadow-sm whitespace-nowrap pointer-events-none border border-zinc-200 dark:border-zinc-700">
+            {sponsor.name}
+          </span>
+        </div>
+      ))}
+    </div>
+
+    <!-- Banner interactivo de WhatsApp bien diseñado -->
+    <div class="max-w-2xl mx-auto p-6 sm:p-7 rounded-3xl bg-gradient-to-r from-zinc-50 via-zinc-100 to-zinc-50 dark:from-zinc-900/80 dark:via-zinc-900 dark:to-zinc-900/80 border border-zinc-200/80 dark:border-zinc-800 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-5 text-center sm:text-left">
+      <div class="flex items-center gap-3.5">
+        <div class="p-3 rounded-2xl bg-brand-terracotta/10 text-brand-terracotta shrink-0 hidden sm:block">
+          <Building2 class="w-6 h-6" />
+        </div>
+        <div>
+          <h4 class="text-sm font-bold text-zinc-900 dark:text-white">¿Representas una empresa o marca?</h4>
+          <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">Únete como aliado y ayúdanos a transformar la vida de más de 80 peluditos.</p>
+        </div>
+      </div>
+
+      <a
+        href="https://wa.me/573000000000?text=Hola,%20somos%20una%20empresa%20y%20nos%20gustaria%20ser%20patrocinadores%20del%20refugio"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 hover:bg-brand-terracotta dark:hover:bg-brand-terracotta dark:hover:text-white text-xs font-bold transition-all shadow-md shrink-0"
+      >
+        <MessageSquare class="w-4 h-4 fill-current" />
+        <span>Háblanos por WhatsApp</span>
+      </a>
+    </div>
+
+  </div>
+</section>

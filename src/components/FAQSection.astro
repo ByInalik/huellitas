@@ -1,0 +1,62 @@
+---
+import { ChevronDown, HelpCircle } from 'lucide-astro';
+
+const faqs = [
+  {
+    question: "¿Qué es el apadrinamiento a distancia?",
+    answer: "Consiste en apoyar mensualmente a una mascota en específico seleccionando su kit de nutrición, salud o bienestar. Aunque la mascota permanezca en el refugio, recibirás actualizaciones periódicas y sabrás exactamente en qué se invierte tu ayuda."
+  },
+  {
+    question: "¿Puedo donar insumos físicos en lugar de dinero?",
+    answer: "¡Claro que sí! Aceptamos alimento concentrado, cobijas, camitas, medicamentos veterinarios y productos de aseo. Puedes coordinar la entrega física en la sede del refugio."
+  },
+  {
+    question: "¿Cómo garantizan la transparencia del dinero recaudado?",
+    answer: "Dado que las fundadoras son adultas mayores con poca experiencia digital, contamos con un gestor de confianza dedicado exclusivamente al registro contable. En la sección de Transparencia publicamos mensualmente los comprobantes y facturas de compras del refugio."
+  },
+  {
+    question: "¿Puedo apoyar también a las fundadoras del refugio?",
+    answer: "Sí. Ellas son adultas mayores de escasos recursos que dedican su vida a cuidar a los más de 80 rescatados. Contamos con una línea especial de donación destinada a apoyar su nutrición y bienestar."
+  },
+  {
+    question: "¿Cómo puedo hacer un seguimiento a mi apadrinado?",
+    answer: "A través de nuestro canal directo de WhatsApp, la persona encargada te enviará fotos y reportes sobre el estado de salud y vivencias del animalito que elegiste apadrinar."
+  }
+];
+---
+
+<section id="faq" class="py-16 bg-white dark:bg-zinc-950 transition-colors">
+  <div class="max-w-4xl mx-auto px-4">
+    
+    <div class="text-center mb-12">
+      <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-brand-terracotta">
+        <HelpCircle class="w-4 h-4" />
+        Resolvemos tus dudas
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-zinc-900 dark:text-white mt-1">
+        Preguntas Frecuentes
+      </h2>
+      <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mt-2">
+        Todo lo que necesitas saber sobre el apadrinamiento, transparencia y voluntariado.
+      </p>
+    </div>
+
+    <!-- Lista de Acordeón -->
+    <div class="space-y-4">
+      {faqs.map((faq) => (
+        <details class="group bg-zinc-50 dark:bg-zinc-900/70 border border-zinc-200/80 dark:border-zinc-800 rounded-2xl transition-all [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex items-center justify-between p-5 sm:p-6 cursor-pointer font-bold text-zinc-900 dark:text-white text-sm sm:text-base select-none">
+            <span>{faq.question}</span>
+            <span class="ml-4 shrink-0 p-1.5 rounded-xl bg-white dark:bg-zinc-800 text-zinc-500 dark:text-zinc-400 group-open:rotate-180 transition-transform duration-300 shadow-sm">
+              <ChevronDown class="w-4 h-4" />
+            </span>
+          </summary>
+          <div class="px-5 pb-5 sm:px-6 sm:pb-6 text-xs sm:text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed border-t border-zinc-200/40 dark:border-zinc-800/60 pt-4">
+            {faq.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+
+  </div>
+</section>

@@ -1,20 +1,44 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import TopBanner from '../components/TopBanner.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
 import AnimalGrid from '../components/AnimalGrid.astro';
 import DonationSection from '../components/DonationSection.astro';
-import AboutSection from '../components/AboutSection.astro';
+import SocialImpact from '../components/SocialImpact.astro';
+import FAQSection from '../components/FAQSection.astro';
+import Sponsors from '../components/Sponsors.astro';
 import Footer from '../components/Footer.astro';
+import { HeartHandshake } from 'lucide-astro';
 ---
 
-<Layout title="Fundación Huellitas | Rescate y Apadrinamiento Animal">
+<Layout title="Fundación Huellitas - Refugio Animal">
+  <TopBanner />
   <Header />
   <main>
     <Hero />
-	<AnimalGrid />
-	<DonationSection />
-	<AboutSection />
-	<Footer />
+    <AnimalGrid />
+    <DonationSection />
+    <SocialImpact />
+
+    <!-- Banner corto hacia la página interna de Voluntariado -->
+    <section class="py-10 bg-zinc-100 dark:bg-zinc-900/60 border-y border-zinc-200/80 dark:border-zinc-800 transition-colors">
+      <div class="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+        <div>
+          <h3 class="text-base font-bold text-zinc-900 dark:text-white">¿Quieres apoyar con tu tiempo?</h3>
+          <p class="text-xs text-zinc-600 dark:text-zinc-400 mt-0.5">Conoce los requisitos, horarios y actividades de nuestro programa de voluntariado.</p>
+        </div>
+        <a
+          href="/voluntariado"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-brand-terracotta hover:bg-orange-600 text-white text-xs font-bold transition-all shadow-sm shrink-0"
+        >
+          <span>Ver información de voluntariado</span>
+        </a>
+      </div>
+    </section>
+
+    <FAQSection />
+    <Sponsors />
   </main>
+  <Footer />
 </Layout>

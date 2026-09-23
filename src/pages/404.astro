@@ -1,0 +1,77 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="404 - Página no encontrada | Fundación Huellitas">
+  <Header />
+
+  <main class="flex-1 flex flex-col justify-between max-w-7xl mx-auto w-full px-6 py-12 min-h-[75vh]">
+    <!-- Mensaje de error (Esquina superior izquierda) -->
+    <div class="space-y-1 max-w-lg">
+      <h1 class="text-xl sm:text-2xl font-black tracking-tight text-zinc-900 dark:text-white">
+        No estamos seguros de qué pasó aquí, ¡lo sentimos!
+      </h1>
+      <p class="text-sm font-medium text-zinc-500 dark:text-zinc-400">
+        Revisa si hay un error en la dirección o intenta volver al inicio.
+      </p>
+      <div class="pt-3">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 dark:bg-zinc-100 text-white dark:text-zinc-900 text-xs font-bold hover:opacity-90 transition-all shadow-sm"
+        >
+          <span>← Volver al inicio</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Composición Central: 404 + Silueta de Perro echado -->
+    <div class="relative flex items-center justify-center my-12 select-none">
+      <!-- "404" Gigante en el fondo -->
+      <span class="text-[120px] sm:text-[180px] md:text-[240px] font-black tracking-tighter text-zinc-200 dark:text-zinc-800/80 leading-none">
+        404
+      </span>
+
+      <!-- Perro echado superpuesto -->
+      <div class="absolute bottom-0 flex flex-col items-center">
+        <!-- Resplandor/Sombra suave detrás de la cabeza -->
+        <div class="w-32 h-32 bg-zinc-300/50 dark:bg-zinc-700/30 rounded-full blur-xl absolute -top-10 -z-10"></div>
+        
+        <!-- SVG del perro echado descansando -->
+        <svg 
+          class="w-40 sm:w-56 md:w-64 h-auto text-zinc-900 dark:text-zinc-100 drop-shadow-md" 
+          viewBox="0 0 200 120" 
+          fill="currentColor"
+        >
+          <!-- Cabeza y orejas gachas -->
+          <path d="M 60 70 C 55 50, 75 40, 85 50 C 90 40, 110 40, 115 50 C 125 40, 145 50, 140 70 Z" />
+          <!-- Oreja izquierda caída -->
+          <path d="M 65 52 C 50 55, 45 75, 58 80 C 65 75, 68 62, 65 52 Z" />
+          <!-- Oreja derecha caída -->
+          <path d="M 135 52 C 150 55, 155 75, 142 80 C 135 75, 132 62, 135 52 Z" />
+          <!-- Hocico sobre las patas -->
+          <ellipse cx="100" cy="68" rx="16" ry="12" />
+          <ellipse cx="100" cy="63" rx="5" ry="3" class="fill-zinc-100 dark:fill-zinc-900" />
+          <!-- Cuerpo echado / Espalda -->
+          <path d="M 45 85 C 35 80, 25 90, 30 105 C 50 110, 150 110, 170 105 C 175 90, 165 80, 155 85 C 140 75, 60 75, 45 85 Z" />
+          <!-- Patas delanteras cruzadas al frente -->
+          <path d="M 75 105 C 75 95, 125 95, 125 105 C 125 110, 75 110, 75 105 Z" />
+          <!-- Cola acostada -->
+          <path d="M 165 100 C 185 102, 190 90, 185 85 C 180 85, 175 95, 160 96 Z" />
+        </svg>
+      </div>
+    </div>
+
+    <!-- Indicador de estado de Error en la esquina inferior izquierda -->
+    <div class="flex items-center gap-2 pt-4 border-t border-zinc-100 dark:border-zinc-800/60">
+      <div class="p-1.5 rounded-lg bg-zinc-100 dark:bg-zinc-800 text-zinc-900 dark:text-white font-bold text-xs flex items-center gap-1.5">
+        <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+        <span>Error 404</span>
+      </div>
+      <span class="text-xs text-zinc-400">Ruta no encontrada</span>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

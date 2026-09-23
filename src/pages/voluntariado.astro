@@ -1,0 +1,116 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { Users, MapPin, Calendar, Clock, Heart, CheckCircle, MessageSquare } from 'lucide-astro';
+
+const roles = [
+  {
+    title: "Cuidado y Paseo Canino",
+    desc: "Acompaña a los perritos en sus paseos diarios, momentos de juego y cepillado.",
+    time: "Fines de semana (8:00 AM - 12:00 PM)"
+  },
+  {
+    title: "Limpieza e Instalaciones",
+    desc: "Ayuda a mantener limpios y cómodos los dormitorios, cobijas y platitos del refugio.",
+    time: "Sábados o Domingos"
+  },
+  {
+    title: "Jornadas de Adopción y Fotos",
+    desc: "Apoya tomando fotos/videos para redes o en la logística de eventos presenciales.",
+    time: "Eventos programados"
+  }
+];
+---
+
+<Layout title="Programa de Voluntariado - Fundación Huellitas">
+  <Header />
+  <main class="py-12 bg-white dark:bg-zinc-950 transition-colors">
+    <div class="max-w-5xl mx-auto px-4">
+      
+      <!-- Hero de la página -->
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-brand-terracotta/10 border border-brand-terracotta/30 text-brand-terracotta text-xs font-bold uppercase tracking-wider">
+          <Users class="w-4 h-4" />
+          Sé parte del cambio
+        </span>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-zinc-900 dark:text-white mt-3">
+          Voluntariado en Huellitas
+        </h1>
+        <p class="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 mt-2">
+          Donar tu tiempo es uno de los regalos más valiosos que puedes hacer por nuestros más de 80 animales rescatados.
+        </p>
+      </div>
+
+      <!-- Tarjeta Ubicación y Horarios -->
+      <div class="grid md:grid-cols-2 gap-6 mb-12">
+        <div class="p-6 rounded-3xl bg-zinc-50 dark:bg-zinc-900/70 border border-zinc-200/80 dark:border-zinc-800 flex items-start gap-4">
+          <div class="p-3 rounded-2xl bg-brand-terracotta/10 text-brand-terracotta shrink-0">
+            <MapPin class="w-6 h-6" />
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-zinc-900 dark:text-white">¿Dónde nos ubicamos?</h3>
+            <p class="text-xs text-zinc-600 dark:text-zinc-400 mt-1 leading-relaxed">
+              Sede Principal del Refugio Huellitas. Garzón, Huila (Te entregamos la dirección exacta al agendar tu primera visita).
+            </p>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-zinc-50 dark:bg-zinc-900/70 border border-zinc-200/80 dark:border-zinc-800 flex items-start gap-4">
+          <div class="p-3 rounded-2xl bg-brand-terracotta/10 text-brand-terracotta shrink-0">
+            <Calendar class="w-6 h-6" />
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-zinc-900 dark:text-white">Horarios de Voluntariado</h3>
+            <p class="text-xs text-zinc-600 dark:text-zinc-400 mt-1 leading-relaxed">
+              Sábados y Domingos de 8:00 AM a 12:00 PM. Puedes elegir asistir un día específico o fines de semana intercalados.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formas de colaborar (Roles) -->
+      <h2 class="text-xl font-bold text-zinc-900 dark:text-white mb-6">
+        ¿En qué puedes colaborar?
+      </h2>
+      <div class="grid md:grid-cols-3 gap-6 mb-12">
+        {roles.map((role) => (
+          <div class="p-6 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200/80 dark:border-zinc-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="w-8 h-8 rounded-xl bg-brand-terracotta/10 text-brand-terracotta flex items-center justify-center font-bold text-xs mb-3">
+                <Heart class="w-4 h-4 fill-current" />
+              </div>
+              <h3 class="text-sm font-bold text-zinc-900 dark:text-white mb-1">{role.title}</h3>
+              <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4">{role.desc}</p>
+            </div>
+            <div class="pt-3 border-t border-zinc-100 dark:border-zinc-800/80 flex items-center gap-1.5 text-[11px] font-semibold text-brand-terracotta">
+              <Clock class="w-3.5 h-3.5" />
+              <span>{role.time}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- CTA para Postularse -->
+      <div class="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-brand-terracotta to-orange-600 text-white text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+        <div class="space-y-1">
+          <h3 class="text-xl sm:text-2xl font-extrabold">¿Listo para unirte?</h3>
+          <p class="text-xs sm:text-sm text-orange-100 max-w-lg">
+            Escríbenos directamente por WhatsApp para confirmar tu asistencia e indicarte lo que debes traer (ropa cómoda, calzado cerrado, agua).
+          </p>
+        </div>
+        <a
+          href="https://wa.me/573000000000?text=Hola,%20quiero%20postularme%20como%20voluntario%20en%20el%20refugio"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-white text-brand-terracotta hover:bg-orange-50 font-bold text-xs sm:text-sm transition-all shadow-md shrink-0"
+        >
+          <MessageSquare class="w-4 h-4 fill-current" />
+          <span>Postularme por WhatsApp</span>
+        </a>
+      </div>
+
+    </div>
+  </main>
+  <Footer />
+</Layout>

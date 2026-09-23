@@ -1,0 +1,82 @@
+---
+import { Heart, Home, Utensils, Stethoscope } from 'lucide-astro';
+
+const stats = [
+  { icon: Home, value: 80, suffix: "+", label: "Animales en el refugio", desc: "Perros y gatos bajo nuestro cuidado diario" },
+  { icon: Heart, value: 120, suffix: "+", label: "Adopciones logradas", desc: "Familias transformadas en el Huila" },
+  { icon: Utensils, value: 450, suffix: "kg", label: "Comida mensual", desc: "Alimento necesario cada mes" },
+  { icon: Stethoscope, value: 100, suffix: "%", label: "Salud asegurada", desc: "Vacunados y esterilizados" }
+];
+---
+
+<section class="py-16 bg-zinc-900 text-white relative overflow-hidden border-t border-zinc-800">
+  <div class="max-w-6xl mx-auto px-4 relative z-10">
+    
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="text-xs font-bold uppercase tracking-widest text-brand-terracotta">Nuestro Impacto</span>
+      <h2 class="text-3xl font-extrabold mt-2">Transformando vidas en cifras</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6" id="stats-container">
+      {stats.map((stat) => {
+        const Icon = stat.icon;
+        return (
+          <div class="p-6 rounded-3xl bg-zinc-950/60 border border-zinc-800/80 text-center flex flex-col items-center">
+            <div class="p-3 rounded-2xl bg-brand-terracotta/10 text-brand-terracotta mb-4">
+              <Icon class="w-6 h-6" />
+            </div>
+            
+            <!-- El atributo data-target guarda el número final -->
+            <div class="text-3xl sm:text-4xl font-extrabold text-white flex items-center justify-center gap-0.5">
+              <span class="counter" data-target={stat.value}>0</span>
+              <span>{stat.suffix}</span>
+            </div>
+
+            <p class="text-xs font-bold text-zinc-300 mt-2">{stat.label}</p>
+            <p class="text-[11px] text-zinc-500 mt-1">{stat.desc}</p>
+          </div>
+        );
+      })}
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // Animación del contador progresivo al hacer scroll
+  const counters = document.querySelectorAll('.counter');
+  const container = document.getElementById('stats-container');
+  let animated = false;
+
+  const animateCounters = () => {
+    counters.forEach((counter) => {
+      const target = +(counter.getAttribute('data-target') || '0');
+      const duration = 1500; // Tiempo total de la animación (ms)
+      const stepTime = 20;
+      const steps = duration / stepTime;
+      const increment = target / steps;
+      let current = 0;
+
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          counter.textContent = target.toString();
+          clearInterval(timer);
+        } else {
+          counter.textContent = Math.ceil(current).toString();
+        }
+      }, stepTime);
+    });
+  };
+
+  if (container) {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !animated) {
+        animated = true;
+        animateCounters();
+      }
+    }, { threshold: 0.3 });
+
+    observer.observe(container);
+  }
+</script>
